@@ -1,33 +1,18 @@
-
- 
-
  Mini Project 4 
-
- 
-
- 
 
 Tasks: Deploy static site, integrate Azure Front Door enable HTTPS  
 
 Document global delivery and cost efficiency  
 
- 
-
 Objective  
-
- 
 
 Design and deploy a static website using Azure Storage,  integrate Azure Front Door to deliver low latency global access and  enforce HTTPS to ensure secure and encrypted connections.  
 
 Problem Statement 
 
- 
-
 Users across multiple regions are experiencing high latency and the current configuration does not enforce secure, encrypted HTTPS access to the website.  
 
 Architecture Overview 
-
- 
 
 Hosting 
 
@@ -54,14 +39,9 @@ Cost is monitored using Azure Cost Management feature focusing on bandwidth usag
 Content delivery performance - including cache hit ratio, latency, throughput, edge performance  is monitored using Azure Front Door diagnostic logs, Azure Monitor metrics and Log Analytics to ensure consistent global performance and efficient content distribution.  
 
 Flow: 
-
- 
-
  
 
 Components Used 
-
- 
 
 DNS 
 
@@ -74,16 +54,10 @@ Azure Front Door Diagnostics & Logs
 Azure Monitor  
 
 Cost Management 
-
- 
-
- 
-
  
 
 Design Decisions 
 
- 
 
 DNS 
 
@@ -509,3 +483,6 @@ For this mini‑project:
 
  
 
+=======
+# Azure-Static-Website-Mini-Project
+Static website hosted on Azure Storage with global delivery via Azure Front Door.
