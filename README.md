@@ -55,9 +55,7 @@ Azure Monitor
 
 Cost Management 
  
-
 Design Decisions 
-
 
 DNS 
 
@@ -95,11 +93,9 @@ Azure Cost Management was included to track the cost of each component and trigg
 
 It enables precise identification of services driving higher‑than‑expected costs and supports future optimization by analyzing usage patterns, cost trends, and component‑level expenditure.  
 
- 
 
 Implementation Steps 
 
- 
 
 Step 1: Create the static website origin in Azure Storage 
 
@@ -207,9 +203,6 @@ Code
 
 http://fd-cdn-endpoint-cjczahfkcwb2bvat.z02.azurefd.net 
 
- 
-
- 
 
 Step 4: Verify HTTPS (Default FD Hostname) 
 
@@ -305,7 +298,6 @@ Tags
 
 Review + Create 
 
- 
 
 Step 7:  Cost Monitoring 
 
@@ -327,11 +319,7 @@ Actual Cost 80% Email
 
 Actual Cost 100% Email  
 
- 
-
 Challenges & Resolutions 
-
- 
 
 Challenge 1: 
 
@@ -367,7 +355,6 @@ This resolved the issue and aligned the deployment with Microsoft’s current re
 
 Security Considerations 
 
- 
 
 Azure Front Door 
 
@@ -409,15 +396,8 @@ Detect abnormal origin egress, suggesting cache bypass or inefficient routing.
 
 Provide early warning if costs rise faster than expected, supporting proactive investigation. 
 
- 
-
- 
-
- 
 
 Cost Estimation 
-
- 
 
 Azure Front Door (Standard Profile) 
 
@@ -478,11 +458,3 @@ Total Estimated Monthly Cost
 For this mini‑project: 
 
 €1.50 – €4.50 per month 
-
- 
-
- 
-
-=======
-# Azure-Static-Website-Mini-Project
-Static website hosted on Azure Storage with global delivery via Azure Front Door.
