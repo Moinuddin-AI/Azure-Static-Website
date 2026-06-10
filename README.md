@@ -39,7 +39,7 @@ Cost is monitored using Azure Cost Management feature focusing on bandwidth usag
 Content delivery performance - including cache hit ratio, latency, throughput, edge performance  is monitored using Azure Front Door diagnostic logs, Azure Monitor metrics and Log Analytics to ensure consistent global performance and efficient content distribution.  
 
 Flow: 
-  ![Architecture Diagram](images/Azure-Static-Website-Mini-Project.png)
+  ![Architecture Diagram](images/Azure-Static-Website-Diagram.png)
 
 Components Used 
 
