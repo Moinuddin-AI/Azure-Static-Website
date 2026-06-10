@@ -1,4 +1,4 @@
- Mini Project 4 
+Azure Static Website Project
 
 Tasks: Deploy static site, integrate Azure Front Door enable HTTPS  
 
