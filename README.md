@@ -56,9 +56,9 @@ Azure Monitor
 
 Cost Management 
  
-### Design Decisions 
+## Design Decisions 
 
-DNS 
+### DNS 
 
 DNS was configured to map custom domain to the Azure Front Door Endpoint. A CNAME record was added to route all traffic through Front Door, allowing it to handle global traffic distribution and enforce HTTPS without exposing the storage origin. 
 
