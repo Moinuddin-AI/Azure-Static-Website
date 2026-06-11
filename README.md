@@ -1,16 +1,17 @@
-Azure Static Website Project
+# Azure Static Website Project
 
-Tasks: Deploy static site, integrate Azure Front Door enable HTTPS  
+## Tasks
 
-Document global delivery and cost efficiency  
+Deploy static site, integrate Azure Front Door, enable HTTPS  
 
-Objective  
+## Objective
 
-Design and deploy a static website using Azure Storage,  integrate Azure Front Door to deliver low latency global access and  enforce HTTPS to ensure secure and encrypted connections.  
+Design and deploy a static website using Azure Storage, integrate Azure Front Door to deliver low‑latency global access and enforce HTTPS to ensure secure and encrypted connections.
 
-Problem Statement 
+## Problem Statement
 
-Users across multiple regions are experiencing high latency and the current configuration does not enforce secure, encrypted HTTPS access to the website.  
+Users across multiple regions are experiencing high latency, and the current configuration does not enforce secure, encrypted HTTPS access to the website.
+
 
 Architecture Overview 
 
