@@ -13,9 +13,9 @@ Design and deploy a static website using Azure Storage, integrate Azure Front Do
 Users across multiple regions are experiencing high latency, and the current configuration does not enforce secure, encrypted HTTPS access to the website.
 
 
-Architecture Overview 
+## Architecture Overview 
 
-Hosting 
+### Hosting 
 
 The static website will be hosted on an Azure Storage account using the Static Website hosting feature. 
 
@@ -23,7 +23,7 @@ All web content (HTML, CSS, JavaScript and media assets) are stored in the $web 
 
 Users do not access storage endpoint directly; instead the storage account acts the backend origin for Azure Front Door 
 
-Azure Front Door (AFD) 
+### Azure Front Door (AFD) 
 
 When a user accesses a website, the browser sends a DNS query that resolves the Microsoft Anycast IP  
 
@@ -33,16 +33,16 @@ If requested content is already stored in the FD edge cache, the cached content 
 
 Otherwise, Front Door retrieves the content from the origin (Azure Storage Static Website Endpoint) updates the edge cache and sends the content back to the user 
 
-Cost and Delivery Monitoring 
+### Cost and Delivery Monitoring 
 
 Cost is monitored using Azure Cost Management feature focusing on bandwidth usage, Front Door offload percentage, origin egress bandwidth to understand traffic patterns and optimize operational expenses.  
 
 Content delivery performance - including cache hit ratio, latency, throughput, edge performance  is monitored using Azure Front Door diagnostic logs, Azure Monitor metrics and Log Analytics to ensure consistent global performance and efficient content distribution.  
 
-Flow: 
+### Flow: 
   ![Architecture Diagram](images/Azure-Static-Website-Diagram.png)
 
-Components Used 
+### Components Used 
 
 DNS 
 
@@ -56,13 +56,13 @@ Azure Monitor
 
 Cost Management 
  
-Design Decisions 
+### Design Decisions 
 
 DNS 
 
 DNS was configured to map custom domain to the Azure Front Door Endpoint. A CNAME record was added to route all traffic through Front Door, allowing it to handle global traffic distribution and enforce HTTPS without exposing the storage origin. 
 
-Azure Front Door (Content Delivery Layer) 
+### Azure Front Door (Content Delivery Layer) 
 
 Azure Front Door was selected it provides global edge POPs for low-latency delivery.  
 
@@ -70,7 +70,7 @@ It caches content at the edge, reducing round-trip time and improving page-load 
 
 It also offloads traffic from the storage origin, reducing egress costs and improving scalability during peak access. 
 
-Azure Storage Account ($web) 
+### Azure Storage Account ($web) 
 
 Azure Storage Static Website hosting was chosen to provide a simple, cost-efficient and highly available origin serving static website content. 
 
@@ -78,27 +78,27 @@ It integrates natively with AFD, allowing AFD to retrieve content directly from 
 
 This eliminates the need for web server and significantly reduces operational overhead  
 
-Azure Front Door Diagnostics & Logs 
+### Azure Front Door Diagnostics & Logs 
 
 Azure Front Door Diagnostics were selected because it provides native visibility into cache behavior, Edge POP performance, request patterns, origin latency, response times.  
 
-Azure Monitor 
+### Azure Monitor 
 
 Azure Monitor was selected to track component behavior and performance metrics across the solution, and to generate alerts when thresholds are breached.  
 
 This enables proactive remediation before issues escalate, helps identify performance peaks, and supports future scalability and design improvements by collecting logs and metrics from all components in the architecture. 
 
-Cost Management  
+### Cost Management  
 
 Azure Cost Management was included to track the cost of each component and trigger alerts when spending exceeds defined budgets.  
 
 It enables precise identification of services driving higher‑than‑expected costs and supports future optimization by analyzing usage patterns, cost trends, and component‑level expenditure.  
 
 
-Implementation Steps 
+## Implementation Steps 
 
 
-Step 1: Create the static website origin in Azure Storage 
+### Step 1: Create the static website origin in Azure Storage 
 
 1.1 Create the Storage Account  
 
@@ -140,7 +140,7 @@ Open it in a browser.
 
 Make sure the URL ends with .web.core.windows.net. 
 
-Step 2: Create and Configure the CDN Endpoint 
+### Step 2: Create and Configure the CDN Endpoint 
 
 Go to Create a resource  and type CDN Profiles  in the search bar 
 
@@ -180,7 +180,7 @@ Route: default-route
 
 All in succeeded state 
 
-Step 3: Verify Route + Origin  
+### Step 3: Verify Route + Origin  
 
 Go to Front Door manager → Endpoints → Routes. 
 
@@ -205,7 +205,7 @@ Code
 http://fd-cdn-endpoint-cjczahfkcwb2bvat.z02.azurefd.net 
 
 
-Step 4: Verify HTTPS (Default FD Hostname) 
+### Step 4: Verify HTTPS (Default FD Hostname) 
 
 Open: 
 
@@ -221,7 +221,7 @@ Certificate issued to *.azurefd.net
 
 No custom domain needed — HTTPS is automatically enabled for default FD hostnames. 
 
-Step 5: Enable HTTPS Redirect  
+### Step 5: Enable HTTPS Redirect  
 
 Go to Front Door manager → Endpoints → Routes 
 
@@ -237,7 +237,7 @@ Match incoming request
 
 Select HTTPS Only  
 
-Step 6: Configure Monitoring & Diagnostics 
+### Step 6: Configure Monitoring & Diagnostics 
 
 6.1  Enable Front Door Diagnostic Logs 
 
@@ -300,7 +300,7 @@ Tags
 Review + Create 
 
 
-Step 7:  Cost Monitoring 
+### Step 7:  Cost Monitoring 
 
 7.1 Navigate to resource group rg-mini-project4 
 
@@ -354,10 +354,10 @@ Modern diagnostics and security features
 
 This resolved the issue and aligned the deployment with Microsoft’s current recommended architecture. 
 
-Security Considerations 
+## Security Considerations 
 
 
-Azure Front Door 
+### Azure Front Door 
 
 Acts as a public entry point for the static website  
 
@@ -369,7 +369,7 @@ Uses Edge POPS which naturally absorbs and distributes traffic, reducing the imp
 
 Provides diagnostic logs and metrics, allowing detection of unusual traffic patterns, high error rates, or potential misuse. 
 
-Storage Account  
+### Storage Account  
 
 Fully managed PaaS service - Microsoft handles, platform security, patching and infrastructure hardening.  
 
@@ -379,13 +379,13 @@ All data is encrypted at rest by default.
 
 Access can be controlled using RBAC, ensuring only authorized users can upload or modify website files 
 
-Azure Monitor  
+### Azure Monitor  
 
 Alerts help detect abnormal behavior such as high latency, high error rates, or excessive origin egress. 
 
 These signals can indicate performance issues or potential misuse. 
 
-Cost Management 
+### Cost Management 
 
 Cost Management provides indirect security benefits by helping detect unusual or unexpected usage patterns. In this project, a monthly budget was configured with alerts at 50%, 80%, and 100% of the €10 limit. 
 
@@ -398,9 +398,9 @@ Detect abnormal origin egress, suggesting cache bypass or inefficient routing.
 Provide early warning if costs rise faster than expected, supporting proactive investigation. 
 
 
-Cost Estimation 
+### Cost Estimation 
 
-Azure Front Door (Standard Profile) 
+## Azure Front Door (Standard Profile) 
 
 Azure Front Door is the primary cost‑generating component in this architecture. Costs are based on: 
 
@@ -414,7 +414,7 @@ For a low‑traffic static website, these costs remain minimal.
 
 Estimated Monthly Cost: €1–€3 
 
-Azure Storage Account (Static Website Hosting) 
+## Azure Storage Account (Static Website Hosting) 
 
 The Storage Account hosts the static website content in the $web container. Costs are driven by: 
 
@@ -428,7 +428,7 @@ Because Front Door caches most content, Storage costs remain very low.
 
 Estimated Monthly Cost: €0.10–€0.50 
 
-Azure Monitor Alerts 
+## Azure Monitor Alerts 
 
 Azure Monitor is used to track performance and detect issues such as high latency, errors, or excessive origin egress. Costs come from: 
 
@@ -440,7 +440,7 @@ Only a small number of alerts are configured in this project, so the cost impact
 
 Estimated Monthly Cost: €0.20–€1 
 
-Cost Management (Budgets & Alerts) 
+## Cost Management (Budgets & Alerts) 
 
 Cost Management is used to track spending and send alerts at 50%, 80%, and 100% of the €10 monthly budget. 
 
@@ -454,7 +454,7 @@ These tools help detect unexpected spending but do not add to the monthly bill.
 
 Estimated Monthly Cost: €0 
 
-Total Estimated Monthly Cost 
+## Total Estimated Monthly Cost 
 
 For this mini‑project: 
 
