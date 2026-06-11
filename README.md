@@ -320,15 +320,15 @@ Actual Cost 80% Email
 
 Actual Cost 100% Email  
 
-Challenges & Resolutions 
+## Challenges & Resolutions 
 
-Challenge 1: 
+### Challenge 1: 
 
-Issue: 
+#### Issue: 
 
 The expected CDN Endpoint option was not available in the Azure Portal during resource creation. Only Front Door and CDN Profiles appeared, causing confusion during setup. 
 
-Cause: 
+#### Cause: 
 
 Microsoft has deprecated the classic Azure CDN service (Microsoft.Cdn) and replaced it with the unified Azure Front Door Standard/Premium platform. As a result: 
 
@@ -338,7 +338,7 @@ All new CDN deployments must use Azure Front Door Profiles
 
 The UI and workflow differ from older documentation 
 
-Resolution: 
+#### Resolution: 
 
 Used Azure Front Door Standard to create the CDN profile and endpoint. Front Door now provides: 
 
