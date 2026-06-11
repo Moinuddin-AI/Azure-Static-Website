@@ -398,9 +398,9 @@ Detect abnormal origin egress, suggesting cache bypass or inefficient routing.
 Provide early warning if costs rise faster than expected, supporting proactive investigation. 
 
 
-### Cost Estimation 
+## Cost Estimation 
 
-## Azure Front Door (Standard Profile) 
+### Azure Front Door (Standard Profile) 
 
 Azure Front Door is the primary cost‑generating component in this architecture. Costs are based on: 
 
@@ -414,7 +414,7 @@ For a low‑traffic static website, these costs remain minimal.
 
 Estimated Monthly Cost: €1–€3 
 
-## Azure Storage Account (Static Website Hosting) 
+### Azure Storage Account (Static Website Hosting) 
 
 The Storage Account hosts the static website content in the $web container. Costs are driven by: 
 
@@ -428,7 +428,7 @@ Because Front Door caches most content, Storage costs remain very low.
 
 Estimated Monthly Cost: €0.10–€0.50 
 
-## Azure Monitor Alerts 
+### Azure Monitor Alerts 
 
 Azure Monitor is used to track performance and detect issues such as high latency, errors, or excessive origin egress. Costs come from: 
 
@@ -440,7 +440,7 @@ Only a small number of alerts are configured in this project, so the cost impact
 
 Estimated Monthly Cost: €0.20–€1 
 
-## Cost Management (Budgets & Alerts) 
+### Cost Management (Budgets & Alerts) 
 
 Cost Management is used to track spending and send alerts at 50%, 80%, and 100% of the €10 monthly budget. 
 
@@ -454,7 +454,7 @@ These tools help detect unexpected spending but do not add to the monthly bill.
 
 Estimated Monthly Cost: €0 
 
-## Total Estimated Monthly Cost 
+### Total Estimated Monthly Cost 
 
 For this mini‑project: 
 
